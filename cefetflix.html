@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="filmes.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/filmes.js"></script>
+	<script>
+		$(function(){
+			$.each(filmes, function(indice, movie){
+				var $divOpinioes=$("<div />")
+					.addClass("opinioes")
+					.append($("<span/>")
+						.text("Opiniões:")
+					);
+				
+				var $ul=$("<ul />")
+					.addClass("tit-semelhante");
+					
+				
+				$.each(movie.opinioes, function(i, opiniao){
+					$divOpinioes
+						.append($("<br/>"))
+						.append(
+							$("<p />")
+							.addClass("avaliacao")
+							.text(opiniao.rating)
+							.append(
+								$("<p />")
+								.text(opiniao.descricao)
+							)
+						);	
+							
+				});
+				
+				$.each(movie.titulosSemelhantes, function(i, tituloSemelhante){
+					$ul.append(
+						$("<li/>").text(filmes[tituloSemelhante-1].titulo)
+					)
+					
+					
+				});
+				
+				$(".catalogo")
+					.append(
+						$("<img />")
+							.attr("src", movie.figura)
+							.addClass("imagem_filme")							
+					)
+				
+				
+					.append($("<div />")
+						.addClass("filme")
+						
+						.append(
+							$("<p />")
+							.attr("id","classificacao")
+							
+							.text(movie.classificacao)
+						)
+				
+						.append(
+							$("<h2 />")
+							.text(movie.titulo)
+						)
+						
+						.append(
+								$("<span/>")
+								.attr("id", "genero1")
+								.text("Gêneros:")
+						)
+						
+						.append(
+							$("<p />")
+							.attr("id","genero")
+							
+							.text(movie.generos)
+						)
+						.append($("<br/>"))
+						.append($("<br/>"))
+						.append($("<br/>"))
+						.append(
+								$("<span/>")
+								.attr("id", "resumo1")
+								.text("Resumo:")
+						)
+						.append(
+							$("<p />")
+							.attr("id","resumo")
+							.text(movie.resumo)
+						)
+						.append(
+								$("<span/>")
+								.attr("id", "elenco1")
+								.text("Elenco:")
+						)
+						.append(
+							$("<p />")
+							.attr("id","elenco")
+							.text(movie.elenco)
+						)
+						
+						.append(
+							
+							$divOpinioes
+						)
+						.append(
+								$("<span/>")
+								.text("Títulos Semelhantes:")
+						)
+						
+						.append(
+							$ul
+						)
+					);
+			
+			
+			
+			
+			});
+		
+		
+		});
+	</script>
+	
+</head>
+<body>
+	<h1 id="logo">CEFETFLIX</h1>
+	<div class="catalogo">
+		
+	</div>
+</body>
+</html>
